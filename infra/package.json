@@ -1,0 +1,24 @@
+{
+  "name": "infra",
+  "version": "1.0.0",
+  "scripts": {
+    "synth": "bun --bun cdk synth",
+    "deploy": "bun --bun cdk deploy",
+    "destroy": "bun --bun cdk destroy",
+    "deploy:eph": "bun --bun cdk deploy -c eph=true",
+    "destroy:eph": "bun --bun cdk destroy -c eph=true",
+    "typecheck": "tsc",
+    "bootstrap": "bun --bun cdk bootstrap"
+  },
+  "type": "module",
+  "dependencies": {
+    "aws-cdk-lib": "^2.275.0",
+    "constructs": "^10.8.1"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.4.4",
+    "aws-cdk": "^2.1148.0",
+    "typescript": "^7.0.2"
+  },
+  "private": true
+}

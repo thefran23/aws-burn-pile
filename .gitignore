@@ -1,0 +1,6 @@
+/target
+burn-pile.toml
+infra/node_modules
+infra/cdk.out
+infra-imagegen/node_modules
+infra-imagegen/cdk.out

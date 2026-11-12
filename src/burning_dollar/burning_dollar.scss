@@ -1,0 +1,53 @@
+.burn {
+  position: relative;
+  display: inline-block;
+  line-height: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+// Overlay holding the flames; blends with the dollar underneath.
+.fire {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  animation: flicker 0.15s infinite alternate;
+
+  // Continuous glow along the bottom so the flames share a base.
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    // --burn is set from Rust, so the glow matches start_height.
+    background: linear-gradient(to top, rgba(255, 40, 0, 0.9), transparent var(--burn));
+  }
+}
+
+// One flame; its height is set randomly from Rust.
+.flame {
+  position: absolute;
+  bottom: 0;
+  width: 16%;
+  transform: translateX(-50%);
+  border-radius: 50% 50% 20% 20% / 70% 70% 30% 30%;
+  background: radial-gradient(
+    ellipse at 50% 100%,
+    rgba(255, 230, 0, 0.9),
+    rgba(255, 120, 0, 0.8) 40%,
+    rgba(255, 40, 0, 0.6) 65%,
+    transparent 75%
+  );
+  filter: blur(4px);
+  transition: height 0.18s ease-in-out;
+}
+
+@keyframes flicker {
+  from {
+    opacity: 0.75;
+  }
+  to {
+    opacity: 1;
+  }
+}

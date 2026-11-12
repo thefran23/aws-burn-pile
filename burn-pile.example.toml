@@ -1,0 +1,31 @@
+# aws-burn-pile configuration (example)
+# Copy this file to burn-pile.toml and fill in your values.
+# Do NOT commit burn-pile.toml: it contains webhook URLs.
+
+# Alert when yesterday's cost is this many percent above the baseline.
+threshold_percent = 20.0
+
+# Number of days before yesterday used to compute the average (baseline).
+baseline_days = 7
+
+# Ignore spikes when yesterday's cost is below this many USD (avoids noise on tiny bills).
+min_daily_cost = 0.50
+
+# One block per AWS account to check.
+# `profile` must match a profile in %USERPROFILE%\.aws\credentials.
+[[accounts]]
+name = "personal"
+profile = "burn-pile"
+
+# Where to send alerts. kind = "discord" | "slack" | "teams"
+[[notifiers]]
+kind = "discord"
+webhook_url = "https://discord.com/api/webhooks/<id>/<token>"
+
+# [[notifiers]]
+# kind = "slack"
+# webhook_url = "https://hooks.slack.com/services/<...>"
+
+# [[notifiers]]
+# kind = "teams"
+# webhook_url = "https://<tenant>.webhook.office.com/<...>"
